@@ -1,0 +1,16 @@
+version: "3"
+services:
+  front:
+    image: node:16
+    env_file: .env
+    volumes:
+      - .:/usr/src
+      - front_modules:/usr/src/node_modules
+    working_dir: "/usr/src"
+    command: sh -c "yarn && yarn build && yarn start"
+    tty: true
+    ports:
+      - "3000:3000"
+
+volumes:
+  front_modules:
